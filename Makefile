@@ -4,9 +4,9 @@ SRC = ft_printf.c ft_printf_add.c
 
 all: $(NAME)
 
-CC = gcc
+CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
 
 OBJS = $(SRC:.c=.o)
 

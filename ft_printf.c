@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: annmakar <annmakar@student.42prague.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 16:19:57 by annmakar          #+#    #+#             */
+/*   Updated: 2024/11/30 15:48:59 by annmakar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_conversion(const char type, va_list vargs)
@@ -19,13 +31,11 @@ int	ft_conversion(const char type, va_list vargs)
 	return (-1);
 }
 
-int	ft_printf(const char *str, ...)
+int	check(const char *str, va_list vargs)
 {
-	va_list	vargs;
 	int		len;
 	int		check;
 
-	va_start (vargs, str);
 	len = 0;
 	while (*str)
 	{
@@ -44,6 +54,18 @@ int	ft_printf(const char *str, ...)
 		}
 		str++;
 	}
+	return (len);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list	vargs;
+	int		len;
+
+	va_start (vargs, str);
+	if (!str || *str == '\0')
+		return (-1);
+	len = check(str, vargs);
 	va_end(vargs);
 	return (len);
 }
